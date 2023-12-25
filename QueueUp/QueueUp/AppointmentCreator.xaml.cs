@@ -10,19 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace QueueUp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Window1 : Window
     {
-        public string a;
-        Apointment apointmentment=new Apointment();
-        public MainWindow()
+        public Window1()
         {
             InitializeComponent();
         }
@@ -32,9 +29,9 @@ namespace QueueUp
 
         }
 
-        private void NavigateToAppointment(object sender, RoutedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            mainFrame.Navigate(apointmentment);
+
         }
     }
 }

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Button Content="Создать встречу" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Height="56" Width="184" Click="Button_Click"/>
+        <Button Content="Показать встречу" HorizontalAlignment="Left" Margin="383,18,0,0" VerticalAlignment="Top" Height="71" Width="172" Click="NavigateToAppointment"/>
 
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Margin="377,117,25,45"/>
     </Grid>
 </Window>
