@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,11 +22,20 @@ namespace QueueUp
     /// <summary>
     /// Логика взаимодействия для ApointmentList.xaml
     /// </summary>
-    public partial class ApointmentList : Page
+    public partial class ApointmentPage : Page, INotifyPropertyChanged
     {
-        public ObservableCollection<Student> Students = new ObservableCollection<Student>();
-        
-        public ApointmentList()
+        private ObservableCollection<Student> students = new ObservableCollection<Student>();
+        public ObservableCollection<Student> Students
+        {
+            get { return students; }
+            set
+            {
+                students = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ApointmentPage()
         {
             InitializeComponent();
             Students = new ObservableCollection<Student>
@@ -33,6 +44,11 @@ namespace QueueUp
             };
         }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
 

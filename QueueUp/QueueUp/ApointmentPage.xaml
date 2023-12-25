@@ -5,15 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QueueUp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="820" d:DesignWidth="480"
       Title="ApointmentList">
 
     <Grid>
-        <ListBox x:Name="StudentList" Margin="463,11,17,136" d:ItemsSource="{Binding Students}" SelectionChanged="ListBox_SelectionChanged">
+        <Grid.Background>
+            <SolidColorBrush Color="LightBlue"/>
+        </Grid.Background>
+
+        <ListBox x:Name="StudentList" Margin="251,125,35,304" d:ItemsSource="{Binding Students}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
-                </DataTemplate>
+                </DataTemplate> 
             </ListBox.ItemTemplate>
 
         </ListBox>

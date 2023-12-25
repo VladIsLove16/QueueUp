@@ -10,7 +10,6 @@ namespace QueueUp.Struct
         public List<Apointment> Appointments = new List<Apointment>();
         public void EndSome()
         {
-            Appointments[0]
         }
     }
     
