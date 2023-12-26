@@ -4,22 +4,53 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QueueUp"
+      xmlns:c="clr-namespace:QueueUp.Struct"
       mc:Ignorable="d" 
       d:DesignHeight="820" d:DesignWidth="480"
       Title="ApointmentList">
-
     <Grid>
         <Grid.Background>
             <SolidColorBrush Color="LightBlue"/>
         </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="31*">
 
-        <ListBox x:Name="StudentList" Margin="251,125,35,304" d:ItemsSource="{Binding Students}">
+            </RowDefinition>
+            <RowDefinition Height="228*">
+
+            </RowDefinition>
+            <RowDefinition Height="151*">
+
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="StudentList" Margin="8,8,8,8" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
-                </DataTemplate> 
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=Group}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
+        <Grid Grid.Row="2">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Grid.Row="0" Content="Пропустить" FontSize="30" >
+            </Button>
+            <Button Grid.Column="1" Grid.Row="1" Content="Завершить" FontSize="30" >
+            </Button>
+            <Button Grid.Column="0" Grid.Row="0" Content="В разработке" FontSize="30" >
+            </Button>
+            <Button Grid.Column="0" Grid.Row="1" Content="В разработке" FontSize="30" >
+            </Button>
+         </Grid>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" TextAlignment="Center" Width="144" Margin="0,10,0,10" ><Run Language="ru-ru" Text="Ученики" FontSize="30"/></TextBlock>
     </Grid>
 </Page>

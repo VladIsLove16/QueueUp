@@ -8,7 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ApointmentCreato1r.xaml.cs" />
     <Compile Remove="StudentCollection.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="ApointmentCreato1r.xaml" />
   </ItemGroup>
 
   <ItemGroup>

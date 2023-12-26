@@ -1,0 +1,18 @@
+﻿<Page x:Class="QueueUp.ApointmentCreator"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QueueUp"
+      mc:Ignorable="d" 
+        d:DesignHeight="820" d:DesignWidth="480"
+      Title="ApoitmentCreator">
+
+    <Grid>
+        <TextBox x:Name="Time" HorizontalAlignment="Left" Margin="106,41,0,0" TextWrapping="Wrap" Text="Время" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Group" HorizontalAlignment="Left" Margin="107,73,0,0" TextWrapping="Wrap" Text="Группа" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Subject" HorizontalAlignment="Left" Margin="106,104,0,0" TextWrapping="Wrap" Text="Предмет" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Teacher" HorizontalAlignment="Left" Margin="105,133,0,0" TextWrapping="Wrap" Text="Преподаватель" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="114,178,0,0" VerticalAlignment="Top" Click="CreateApointment_Click"/>
+    </Grid>
+</Page>

@@ -1,57 +1,66 @@
 ﻿using QueueUp.Struct;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace QueueUp
 {
-    /// <summary>
-    /// Логика взаимодействия для ApointmentList.xaml
-    /// </summary>
     public partial class ApointmentPage : Page, INotifyPropertyChanged
     {
-        private ObservableCollection<Student> students = new ObservableCollection<Student>();
-        public ObservableCollection<Student> Students
+        public Apointment apointment;
+        public void SetApointment(Apointment apointment)
         {
-            get { return students; }
+            apointment= apointment;
+        }
+        public ApointmentPage()
+        {
+            InitializeComponent();
+            Students = new ObservableCollection<Student>
+            {
+                new Student("Иванов"),
+            new Student("Ивов")
+            };
+            StudentList.ItemsSource = Students;
+        }
+        private ObservableCollection<Student> students = new ObservableCollection<Student>();
+       public ObservableCollection<Student> Students
+        {
+            get {
+                return students;
+            }
             set
             {
                 students = value;
                 OnPropertyChanged();
             }
         }
-
-        public ApointmentPage()
-        {
-            InitializeComponent();
-            Students = new ObservableCollection<Student>
-            {
-                new Student("Иванов")
-            };
-        }
-
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
+        public delegate void Notify();
+        public event Notify? Skip_Clicked,End_Click;
+        private void SkipBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Skip_Clicked?.Invoke();
+        }private void EndpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            End_Click?.Invoke();
+        }
 
+        //private ObservableCollection<string> GetNames()
+        //{
+        //    ObservableCollection<string> names = new ObservableCollection<string>();
+        //    foreach (Student student in students) names.Add(student.Name);
+        //    return names;
         //}
     }
+
+    //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+
+    //}
 }
+

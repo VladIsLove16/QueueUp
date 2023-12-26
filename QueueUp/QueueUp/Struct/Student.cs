@@ -11,8 +11,8 @@ namespace QueueUp.Struct
     {
         public static int StudentCount;
         public int ID;
-        public string Name;
-        public string Group;
+        public string Name { get; set; }
+        public string Group { get; set; }
         public string LastComment;
         public Student()
         {

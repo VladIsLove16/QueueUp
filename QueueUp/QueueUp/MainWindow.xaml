@@ -6,15 +6,18 @@
         xmlns:local="clr-namespace:QueueUp"
         mc:Ignorable="d"
         Title="MainWindow" Height="960" Width="540">
-    <Grid Margin="0,0,-38,-120">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="37*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Создать встречу" HorizontalAlignment="Left" Margin="34,30,0,0" VerticalAlignment="Top" Height="56" Width="184" Click="CreateAppointment_Click" Grid.ColumnSpan="2"/>
-        <Button Content="Показать встречу" HorizontalAlignment="Left" Margin="289,20,0,0" VerticalAlignment="Top" Height="71" Width="172" Click="NavigateToAppointment" Grid.Column="1"/>
 
-        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Margin="23,95,74,150" Grid.ColumnSpan="2"/>
+    <Grid Margin="10,10,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="921*"/>
+        </Grid.RowDefinitions>
+        <UniformGrid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Grid.Row="0" >
+            <Button Content="Показать все встречи" Height="48" Width="120" Click="NavigateToAppointment" />
+            <Button Content="Создать встречу" Height="48" Width="120" Click="CreateAppointment_Click"/>
+            <Button Content="Мои встречи" Height="48" Width="120" Click="NavigateToAppointment" Margin="70,7,70,7"/>
+           </UniformGrid>
+        <Frame Grid.Row="1" x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

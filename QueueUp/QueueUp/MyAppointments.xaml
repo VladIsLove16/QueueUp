@@ -1,0 +1,29 @@
+﻿<Page x:Class="QueueUp.MyAppointments"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QueueUp"
+      xmlns:c="clr-namespace:QueueUp.Struct"
+      mc:Ignorable="d"
+      d:DesignHeight="820" d:DesignWidth="480"
+      Title="MyAppointments">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="LightBlue"/>
+        </Grid.Background>
+        <ListBox x:Name="ApointmentsList" Margin="259,195,27,234">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="16" Text="{Binding Path=Subject}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=Group}" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Reload" HorizontalAlignment="Left" Margin="259,94,0,0" VerticalAlignment="Top" Height="49" Width="184" Click="ReloadInfo_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="120,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="56" Width="172"><Run Language="ru-ru" Text="Ваши встречи"/></TextBlock>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="49,227,0,0" VerticalAlignment="Top" Height="114" Width="95" RenderTransformOrigin="-0.974,0.366" Click="Button_Click"/>
+    </Grid>
+</Page>
