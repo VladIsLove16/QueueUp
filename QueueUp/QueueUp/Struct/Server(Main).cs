@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,22 +17,29 @@ namespace QueueUp.Struct
         public AppointmentCollection appointmentCollection = new AppointmentCollection();
         public void OnAppointmentCreated(object sender, ApointmentCreatedEventArgs e)
         {
-            appointmentCollection.Add(new Apointment()
-            {
-                DateTime = e.DateTime,
-                Subject = e.Subject,
-                Teachers = e.Teachers,
-                Group = e.Group
-            });
+            appointmentCollection.Add(e.Apointment);
             AppointmentCollectionChanged?.Invoke();
+            Debug.WriteLine(appointmentCollection.GetObservableCollection().Count);
 
+        }
+        public void OnStudentSignUp(object sender, StudentSignUpEventArgs e)
+        {
+            studentCollection.Add(e.student);
+            appointmentCollection.SignUp(e);
+            AppointmentCollectionChanged?.Invoke();
+            Debug.WriteLine(appointmentCollection[e.Apointment]);
         }
         public delegate void Notify();
         public event Notify? AppointmentCollectionChanged;
 
-        public AppointmentCollection LoadAppointmentCollection()
+        public AppointmentCollection GetAppointmentCollection()
         {
             return appointmentCollection;
+        }
+
+        internal void OnFinish_Appointment( Apointment a)
+        {
+            appointmentCollection.RemoveAppointment(a);
         }
     }
 }

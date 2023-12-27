@@ -10,7 +10,8 @@
 
     <Grid>
         <TextBox x:Name="Time" HorizontalAlignment="Left" Margin="106,41,0,0" TextWrapping="Wrap" Text="Время" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <TextBox x:Name="Group" HorizontalAlignment="Left" Margin="107,73,0,0" TextWrapping="Wrap" Text="Группа" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Group" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Margin="107,73,0,0" TextWrapping="Wrap" Text="221-3710" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Cabinet"  PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Margin="241,78,0,0" TextWrapping="Wrap" Text="1430" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBox x:Name="Subject" HorizontalAlignment="Left" Margin="106,104,0,0" TextWrapping="Wrap" Text="Предмет" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBox x:Name="Teacher" HorizontalAlignment="Left" Margin="105,133,0,0" TextWrapping="Wrap" Text="Преподаватель" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <Button Content="Create" HorizontalAlignment="Left" Margin="114,178,0,0" VerticalAlignment="Top" Click="CreateApointment_Click"/>

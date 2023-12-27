@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,12 +35,13 @@ namespace QueueUp
         private void CreateApointment_Click(object sender, RoutedEventArgs e)
         {
             ApointmentCreatedEventArgs eventArgs = new ApointmentCreatedEventArgs();
-            eventArgs.DateTimeStr = Time.Text.ToString();
-            eventArgs.Group = Group.Text.ToString();
-            eventArgs.Subject = Subject.Text.ToString();
-            eventArgs.Teachers = new List<Teacher>()
+            eventArgs.Apointment = new Apointment()
             {
-                new Teacher(Teacher.Text.ToString())
+                Date = Time.Text.ToString(),
+                Group = new StudentGroup() { Number = Group.Text.ToString() },
+                Subject = new Subject(Subject.Text.ToString()),
+                Teacher = new Teacher(Teacher.Text.ToString()),
+                Cabinet = Int32.Parse(Cabinet.Text)
             };
             OnApointmentCreate(eventArgs);
         }
@@ -47,6 +49,14 @@ namespace QueueUp
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Регулярное выражение, которое разрешает только цифры
+            Regex regex = new Regex("[^0-9-]+");
+
+            // Если вводимый текст не является цифрой, отменяем ввод
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

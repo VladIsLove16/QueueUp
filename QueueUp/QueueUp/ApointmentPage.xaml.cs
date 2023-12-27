@@ -1,66 +1,106 @@
 ﻿using QueueUp.Struct;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+
 namespace QueueUp
 {
     public partial class ApointmentPage : Page, INotifyPropertyChanged
     {
-        public Apointment apointment;
-        public void SetApointment(Apointment apointment)
+        private Apointment apointment;
+        public Apointment Apointment
         {
-            apointment= apointment;
+            get
+            {
+                return apointment;
+            }
+            set
+            {
+                apointment = value;
+                OnApointmentChanged();
+            }
         }
         public ApointmentPage()
         {
             InitializeComponent();
-            Students = new ObservableCollection<Student>
-            {
-                new Student("Иванов"),
-            new Student("Ивов")
-            };
-            StudentList.ItemsSource = Students;
-        }
-        private ObservableCollection<Student> students = new ObservableCollection<Student>();
-       public ObservableCollection<Student> Students
-        {
-            get {
-                return students;
-            }
-            set
-            {
-                students = value;
-                OnPropertyChanged();
-            }
+            apointment=new Apointment();
+            DataContext= apointment;
+            apointment.TeacherChanged += Apointment_TeacherChanged;
+            apointment.PropertyChanged += Apointment_PropertyChanged;
+            StudentList.ItemsSource = apointment.GetStudentCollection();
         }
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        
+        private void Apointment_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Debug.WriteLine("e.PropertyName:" + e.PropertyName);
+            UpdateInfo();
+            // if (e.PropertyName == "Subject")
+            //{
+            //    UpdateInfo();
+            //}
+            //OnPropertyChanged(nameof(Apointment));
+            //apointment.Teacher.
+            //UpdateTeacherName();
         }
-        public delegate void Notify();
-        public event Notify? Skip_Clicked,End_Click;
+        private void UpdateInfo()
+        {
+            UpdateTeacherName();
+            UpdateSubjectText();
+        }
+        private void Apointment_TeacherChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            Debug.WriteLine("e.PropertyName:" + e.PropertyName);
+            if (e.PropertyName == "Name")
+            {
+                UpdateTeacherName();
+            }
+        }
+        private void OnApointmentChanged()
+        {
+            UpdateInfo();
+            StudentList.ItemsSource = apointment.GetStudentCollection();
+        }
+        private void UpdateSubjectText()
+        {
+             Subject.Text = apointment.Subject?.ToString??"Предмет не определён";
+        }
+
+        private void UpdateTeacherName()
+        {
+            TeacherName.Text = apointment.Teacher?.ToString?? "Учитель не выбран";
+        }
+        public delegate void BtnClickNotify();
+        public event BtnClickNotify? Skip_Clicked,End_Click;
+        int num = 1;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //apointment.Subject = "aaa";
+            apointment.AddStudent(new Student() { Name = num++.ToString() });
+        }
+
         private void SkipBtn_Click(object sender, RoutedEventArgs e)
         {
             Skip_Clicked?.Invoke();
-        }private void EndpBtn_Click(object sender, RoutedEventArgs e)
+        }
+        private void EndpBtn_Click(object sender, RoutedEventArgs e)
         {
             End_Click?.Invoke();
         }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Регулярное выражение, которое разрешает только цифры
+            Regex regex = new Regex("[^0-9]+");
 
-        //private ObservableCollection<string> GetNames()
-        //{
-        //    ObservableCollection<string> names = new ObservableCollection<string>();
-        //    foreach (Student student in students) names.Add(student.Name);
-        //    return names;
-        //}
+            // Если вводимый текст не является цифрой, отменяем ввод
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
-
-    //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    //{
-
-    //}
 }
 

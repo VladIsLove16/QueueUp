@@ -13,9 +13,9 @@
             <RowDefinition Height="921*"/>
         </Grid.RowDefinitions>
         <UniformGrid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Grid.Row="0" >
-            <Button Content="Показать все встречи" Height="48" Width="120" Click="NavigateToAppointment" />
+            <Button Content="Показать все встречи" Height="48" Width="120" Click="NavigateToAllAppointments" />
             <Button Content="Создать встречу" Height="48" Width="120" Click="CreateAppointment_Click"/>
-            <Button Content="Мои встречи" Height="48" Width="120" Click="NavigateToAppointment" Margin="70,7,70,7"/>
+            <Button Content="Моя встреча" Height="48" Width="120" Click="NavigateToMyAppointment" Margin="70,7,70,7"/>
            </UniformGrid>
         <Frame Grid.Row="1" x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
 

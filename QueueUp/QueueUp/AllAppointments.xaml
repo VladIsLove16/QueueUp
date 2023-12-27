@@ -1,0 +1,38 @@
+﻿<Page x:Class="QueueUp.AllAppointments"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QueueUp"
+      xmlns:c="clr-namespace:QueueUp.Struct"
+      d:DataContext="{d:DesignInstance Type=c:Apointment}"
+      mc:Ignorable="d"
+      d:DesignHeight="820" d:DesignWidth="480"
+      Title="MyAppointments"
+      Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="LightBlue"/>
+        </Grid.Background>
+        <ListBox x:Name="ApointmentsList" Margin="24,195,27,234" DataContext="d" SelectionChanged="ApointmentsList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5" Orientation="Horizontal"
+                         d:DataContext="{d:DesignInstance Type=c:Apointment}" >
+                        <TextBlock Margin="0,0,8,0" FontSize="16" Text="{Binding Path=Date}" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,0,8,0" FontSize="16" Text="{Binding Path=Teacher.ToString}" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,0,8,0" FontSize="16" Text="{Binding Path=Subject.ToString}" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,0,8,0" FontSize="16" Text="{Binding Path=Group.ToString}" HorizontalAlignment="Center" />
+                        
+                    </StackPanel>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        
+        </ListBox>
+        <Button x:Name="SignUpbtn" Content="Записаться" HorizontalAlignment="Left" Margin="42,71,0,0" VerticalAlignment="Top" Height="49" Width="184" Click="SignUpForApointment"/>
+        <Button x:Name="Navigatebtn" Content="Перейти" HorizontalAlignment="Left" Margin="42,128,0,0" VerticalAlignment="Top" Height="49" Width="184" Click="NavigateToApointment"/>
+        <Button Content="Перезагрузить" HorizontalAlignment="Left" Margin="274,125,0,0" VerticalAlignment="Top" Height="49" Width="184" Click="ReloadInfo_Click"/>
+         <Button Content="Закончить" HorizontalAlignment="Left" Margin="271,65,0,0" VerticalAlignment="Top" Height="49" Width="184" Click="Finish_Appoinment"/>
+    </Grid>
+</Page>
